@@ -15,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { LoginComponent } from './components/login/login.component';
+import { NotAuthorisedComponent } from './components/login/not-authorised.component';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -24,7 +25,8 @@ import { LoginComponent } from './components/login/login.component';
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        LoginComponent
+        LoginComponent,
+        NotAuthorisedComponent
     ],
     providers: [AuthGuard, AuthService, StateService],
     imports: [
@@ -35,6 +37,7 @@ import { LoginComponent } from './components/login/login.component';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'login', component: LoginComponent },
+            { path: 'not-authorised', component: NotAuthorisedComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
             { path: '**', redirectTo: 'home' }
