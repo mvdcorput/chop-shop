@@ -64,14 +64,15 @@ export class AuthService {
             .catch(this.handleError);
     }
 
-    setLoginState(loggedIn): void {
+    setLoginState(loggedIn: boolean): Promise<any>  {
         if (loggedIn) {
-            this.getUserInfo().then(res => {
+            return this.getUserInfo().then(res => {
                 this.state.username = (res.Data as any).Username;
             }).catch(e => {
                 if (e.status === 401)
                 {
                     this.logout();
+                    throw 'Unauthorized';
                 }
             });
         }
