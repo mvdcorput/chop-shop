@@ -6,6 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 
 import { AuthService } from "./services/auth.service";
+import { StateService } from './services/state.service';
 import { AuthGuard } from './guards/auth.guard';
 
 import { AppComponent } from './components/app/app.component'
@@ -25,7 +26,7 @@ import { LoginComponent } from './components/login/login.component';
         HomeComponent,
         LoginComponent
     ],
-    providers: [AuthGuard, AuthService],
+    providers: [AuthGuard, AuthService, StateService],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
         HttpModule,

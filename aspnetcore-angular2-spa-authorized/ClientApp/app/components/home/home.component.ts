@@ -1,28 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../../services/auth.service';
+import { StateService } from '../../services/state.service';
 
 @Component({
     selector: 'home',
     templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
-    isLoggedIn = false;
-    username: string;
+    public loggedIn: boolean;
 
-    constructor(private authService: AuthService)
+    constructor(private auth: AuthService, private state: StateService)
     {
 
     }
 
     ngOnInit() {
-        this.isLoggedIn = this.authService.checkLogin();
-
-        if (this.isLoggedIn)
-        {
-            this.authService.getUserInfo().then(res => {
-                this.username = (res.Data as any).Username;
-            });
-        }
+        this.loggedIn = this.auth.isLoggedIn();
     }
 }

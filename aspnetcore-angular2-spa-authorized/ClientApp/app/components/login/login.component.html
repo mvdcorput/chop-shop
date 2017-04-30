@@ -1,7 +1,7 @@
 <h1>AspNetCore Angular2 Spa with Authorization</h1>
 
-<div *ngIf="isLoggedIn">
-    <h2>U bent ingelogd als {{loggedInAs}}</h2>
+<div *ngIf="loggedIn">
+    <h2>U bent ingelogd als {{state.username}}</h2>
     <input type="button" (click)="logoff()" value="Uitloggen" />
 </div>
 

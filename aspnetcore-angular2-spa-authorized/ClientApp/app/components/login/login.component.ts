@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { StateService } from '../../services/state.service';
 
 @Component({
     selector: 'login',
@@ -9,26 +10,20 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
     private username: string;
     private password: string;
-    private isLoggedIn: boolean;
-    private loggedInAs: string;
+    private loggedIn: boolean;
 
     constructor(
-        private authService: AuthService,
+        private auth: AuthService,
+        private state: StateService,
         private router: Router
     ) { }
 
     ngOnInit() {
-        this.isLoggedIn = this.authService.checkLogin();
-
-        if (this.isLoggedIn) {
-            this.authService.getUserInfo().then(res => {
-                this.loggedInAs = (res.Data as any).Username;
-            });
-        }
+        this.loggedIn = this.auth.isLoggedIn();
     }
 
     login() {
-        this.authService.login(this.username, this.password)
+        this.auth.login(this.username, this.password)
             .then(result => {
                 if (result.State == 1) {
                     this.router.navigate(["./home"]);
@@ -40,7 +35,7 @@ export class LoginComponent implements OnInit {
     }
 
     logoff() {
-        this.authService.logout();
+        this.auth.logout();
 
         document.location.href = document.location.href;
     }

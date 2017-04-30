@@ -2,13 +2,15 @@
 import { Headers, Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
+import { StateService } from './state.service';
+
 @Injectable()
 export class AuthService {
-    private tokeyKey = "token";
+    private tokenKey = "token";
     private token: string;
     private inBrowser: boolean;
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private state: StateService) {
         this.inBrowser = typeof window !== 'undefined';
     }
 
@@ -20,8 +22,10 @@ export class AuthService {
                     let json = result.Data as any;
 
                     if (this.inBrowser) {
-                        localStorage.setItem("token", json.accessToken);
+                        localStorage.setItem(this.tokenKey, json.accessToken);
                     }
+
+                    this.setLoginState(true);
                 }
                 return result;
             })
@@ -30,12 +34,15 @@ export class AuthService {
 
     logout() {
         if (this.inBrowser) {
-            localStorage.removeItem("token");
+            localStorage.removeItem(this.tokenKey);
         }
+
+        this.setLoginState(false);
     }
 
-    checkLogin(): boolean {
-        var token = this.inBrowser ? localStorage.getItem(this.tokeyKey) : null;
+    isLoggedIn(): boolean {
+        var token = this.inBrowser ? localStorage.getItem(this.tokenKey) : null;
+
         return token != null;
     }
 
@@ -57,9 +64,20 @@ export class AuthService {
             .catch(this.handleError);
     }
 
+    setLoginState(loggedIn): void {
+        if (loggedIn) {
+            this.getUserInfo().then(res => {
+                this.state.username = (res.Data as any).Username;
+            });
+        }
+        else {
+            this.state.username = '';
+        }
+    }
+
     private getLocalToken(): string {
         if (!this.token) {
-            this.token = this.inBrowser ? localStorage.getItem(this.tokeyKey) : '';
+            this.token = this.inBrowser ? localStorage.getItem(this.tokenKey) : '';
         }
         return this.token;
     }
