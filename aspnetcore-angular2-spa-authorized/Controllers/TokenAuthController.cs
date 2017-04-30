@@ -100,9 +100,7 @@ namespace WebApplicationBasic.Controllers
     public static class UserStorage
     {
         public static List<User> Users { get; set; } = new List<User> {
-            new User {ID=Guid.NewGuid(), Username="user1", Password = "user1psw" },
-            new User {ID=Guid.NewGuid(), Username="user2", Password = "user2psw" },
-            new User {ID=Guid.NewGuid(), Username="user3", Password = "user3psw" }
+            new User {ID=Guid.NewGuid(), Username="admin", Password = "geheim" }
         };
     }
 }
