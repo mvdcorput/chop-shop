@@ -22,6 +22,5 @@ export class HomeComponent implements OnInit {
                 this.userName = (res.Data as any).UserName;
             });
         }
-
     }
 }
