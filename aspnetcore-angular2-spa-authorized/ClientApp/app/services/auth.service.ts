@@ -1,4 +1,4 @@
-﻿import { Injectable } from "@angular/core";
+﻿import { Injectable, Inject } from "@angular/core";
 import { Headers, Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
@@ -6,10 +6,11 @@ import "rxjs/add/operator/toPromise";
 export class AuthService {
     private tokeyKey = "token";
     private token: string;
+    private inBrowser: boolean;
 
-    constructor(
-        private http: Http
-    ) { }
+    constructor(private http: Http) {
+        this.inBrowser = typeof window !== 'undefined';
+    }
 
     login(userName: string, password: string): Promise<RequestResult> {
         return this.http.post("/api/TokenAuth", { Username: userName, Password: password }).toPromise()
@@ -18,17 +19,23 @@ export class AuthService {
                 if (result.State == 1) {
                     let json = result.Data as any;
 
-                    sessionStorage.setItem("token", json.accessToken);
+                    if (this.inBrowser) {
+                        localStorage.setItem("token", json.accessToken);
+                    }
                 }
                 return result;
             })
             .catch(this.handleError);
     }
 
-    logout() { }
+    logout() {
+        if (this.inBrowser) {
+            localStorage.removeItem("token");
+        }
+    }
 
     checkLogin(): boolean {
-        var token = sessionStorage.getItem(this.tokeyKey);
+        var token = this.inBrowser ? localStorage.getItem(this.tokeyKey) : null;
         return token != null;
     }
 
@@ -52,7 +59,7 @@ export class AuthService {
 
     private getLocalToken(): string {
         if (!this.token) {
-            this.token = sessionStorage.getItem(this.tokeyKey);
+            this.token = this.inBrowser ? localStorage.getItem(this.tokeyKey) : '';
         }
         return this.token;
     }

@@ -10,6 +10,8 @@
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="1.0.2" />
   </ItemGroup>
   <ItemGroup>
     <!-- Files not to show in IDE -->

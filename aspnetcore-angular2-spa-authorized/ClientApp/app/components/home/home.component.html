@@ -1,10 +1,10 @@
 <h1>AspNetCore Angular2 Spa with Authorization</h1>
 
-<div *ngIf="isLogin">
-    <h1>Ingelogd als: <span>{{userName}}</span></h1>
+<div *ngIf="isLoggedIn">
+    <h2>Ingelogd als: <span>{{username}}</span></h2>
 </div>
 
-<div *ngIf="!isLogin">
+<div *ngIf="!isLoggedIn">
     <h2>Please login</h2>
     <a routerLink="/login">Login</a>
 </div>

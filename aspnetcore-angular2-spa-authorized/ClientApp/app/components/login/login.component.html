@@ -1,0 +1,23 @@
+<h1>AspNetCore Angular2 Spa with Authorization</h1>
+
+<div *ngIf="isLoggedIn">
+    <h2>U bent ingelogd als {{loggedInAs}}</h2>
+    <input type="button" (click)="logoff()" value="Uitloggen" />
+</div>
+
+<h2>Inloggen als</h2>
+<table>
+    <tr>
+        <td>Username:</td>
+        <td><input [(ngModel)]="username" placeholder="Username:try type user1" /></td>
+    </tr>
+    <tr>
+        <td>Password:</td>
+        <td><input [(ngModel)]="password" placeholder="Password:try type user1psd" /></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="button" (click)="login()" value="Login" /></td>
+    </tr>
+</table>
+
