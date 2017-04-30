@@ -68,6 +68,11 @@ export class AuthService {
         if (loggedIn) {
             this.getUserInfo().then(res => {
                 this.state.username = (res.Data as any).Username;
+            }).catch(e => {
+                if (e.status === 401)
+                {
+                    this.logout();
+                }
             });
         }
         else {
