@@ -6,6 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 
 import { AuthService } from "./services/auth.service";
+import { AuthGuard } from './guards/auth.guard';
 
 import { AppComponent } from './components/app/app.component'
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -24,7 +25,7 @@ import { LoginComponent } from './components/login/login.component';
         HomeComponent,
         LoginComponent
     ],
-    providers: [AuthService],
+    providers: [AuthGuard, AuthService],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
         HttpModule,
@@ -34,7 +35,7 @@ import { LoginComponent } from './components/login/login.component';
             { path: 'home', component: HomeComponent },
             { path: 'login', component: LoginComponent },
             { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
+            { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
             { path: '**', redirectTo: 'home' }
         ])
     ]
