@@ -37,6 +37,6 @@ export class LoginComponent implements OnInit {
     logoff() {
         this.auth.logout();
 
-        document.location.href = document.location.href;
+        this.router.navigate(["./home"]);
     }
 }

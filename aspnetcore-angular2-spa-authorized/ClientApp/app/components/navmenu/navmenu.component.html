@@ -19,8 +19,8 @@
                 </li>
                 <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/login']">
-                        <div *ngIf="!isLoggedIn"><span class='glyphicon glyphicon-lock'></span> Login</div>
-                        <div *ngIf="isLoggedIn"><span class='glyphicon glyphicon-lock'></span> Login \ Loguit</div>
+                        <div *ngIf="state.username === ''"><span class='glyphicon glyphicon-lock'></span> Login</div>
+                        <div *ngIf="state.username !== ''"><span class='glyphicon glyphicon-lock'></span> Login \ Loguit</div>
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">

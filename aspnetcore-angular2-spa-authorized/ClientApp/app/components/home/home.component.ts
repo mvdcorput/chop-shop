@@ -23,6 +23,5 @@ export class HomeComponent implements OnInit {
                 self.loggedIn = true;
             });
         }
-        
     }
 }
