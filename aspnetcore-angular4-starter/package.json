@@ -25,7 +25,7 @@
     "dev:watch": "set ASPNETCORE_ENVIRONMENT=Development && dotnet watch run",
     "test:watch": "npm run test -- --auto-watch --no-single-run",
     "lint": "npm run tslint \"Client/**/*.ts\"",
-    "postinstall": "npm rebuild node-sass && npm run webdriver:update",
+    "postinstall": "npm rebuild node-sass",
     "pree2e": "npm run webdriver:update -- --standalone",
     "e2e": "npm run protractor",
     "e2e:live": "npm-run-all -p -r server:prod:ci e2e:debug",
