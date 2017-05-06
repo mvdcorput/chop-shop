@@ -1,0 +1,22 @@
+{
+  "name": "aspnetcore-angular2-spa-polymer",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Martijn van der Corput <mvdcorput@live.nl>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/mvdcorput/chop-shop",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper-elements": "^1.0.7",
+    "vaadin-combo-box": "^1.3.3"
+  }
+}

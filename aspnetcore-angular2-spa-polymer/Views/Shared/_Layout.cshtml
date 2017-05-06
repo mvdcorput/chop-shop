@@ -7,6 +7,17 @@
         <base href="/" />
 
         <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
+
+        <script src="~/assets/bower-components/webcomponentsjs/webcomponents.min.js"></script>
+        <script>
+            window.Polymer = {
+              dom: 'shadow'
+            };
+        </script>
+        <link rel="import" href="~/assets/bower-components/paper-styles/color.html">
+        <link rel="import" href="~/assets/bower-components/paper-styles/typography.html">
+        <link rel="import" href="~/assets/bower-components/vaadin-combo-box/vaadin-combo-box.html">
+        <link rel="import" href="~/assets/bower-components/paper-input/paper-input.html">
     </head>
     <body>
         @RenderBody()
