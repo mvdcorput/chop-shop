@@ -2,7 +2,8 @@
   "name": "aspnetcore-angular2-spa",
   "version": "0.0.0",
   "scripts": {
-    "build": "webpack --config webpack.config.vendor.js",
+    "postinstall": "npm run build",
+    "build": "webpack --config webpack.config.vendor.js && webpack",
     "test": "karma start ClientApp/test/karma.conf.js"
   },
   "dependencies": {
